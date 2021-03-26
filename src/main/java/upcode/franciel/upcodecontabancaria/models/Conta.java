@@ -23,7 +23,7 @@ public class Conta implements Serializable {
 	private String nome;
 
 	@Column(name = "cpf")
-	private Integer cpf;
+	private String cpf;
 
 	@Column(name = "data_nasc")
 	private String data_nasc;

@@ -20,7 +20,7 @@ public class ContaResouce {
 	@Autowired
 	ContaRepository contaRepository;
 	
-	//Comentário teste
+	//Comentário 
 	@GetMapping("/contas")
 	public List<Conta> listaContar() {
 		return contaRepository.findAll();

@@ -1,4 +1,4 @@
-package upcode.franciel.upcodecontabancaria.resources;
+package upcode.franciel.upcodecontabancaria.controller;
 
 import java.util.List;
 
@@ -15,12 +15,11 @@ import upcode.franciel.upcodecontabancaria.repository.ContaRepository;
 
 @RestController
 @RequestMapping(value = "/api")
-public class ContaResouce {
+public class ContaController {
 
 	@Autowired
 	ContaRepository contaRepository;
-	
-	//Comentário 
+
 	@GetMapping("/contas")
 	public List<Conta> listaContar() {
 		return contaRepository.findAll();
@@ -28,9 +27,9 @@ public class ContaResouce {
 
 	@GetMapping("/contas/{id}")
 	public Conta listaContaUnica(@PathVariable(value = "id") long id) {
-		return contaRepository.findById(id);
+		return contaRepository.getOne(id);
 	}
-	
+
 	@PostMapping("/contas")
 	public Conta salvarConta(@RequestBody Conta conta) {
 		return contaRepository.save(conta);

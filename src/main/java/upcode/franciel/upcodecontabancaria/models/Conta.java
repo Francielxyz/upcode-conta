@@ -1,6 +1,7 @@
 package upcode.franciel.upcodecontabancaria.models;
 
 import java.io.Serializable;
+import java.util.Date;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -26,8 +27,13 @@ public class Conta implements Serializable {
 	private String cpf;
 
 	@Column(name = "data_nasc")
-	private String data_nasc;
+	private Date data_nasc;
 
+	@Column(name = "data_cadastro")
+	private Date data_cadastro;
+	
+	
+	
 	public long getId() {
 		return id;
 	}
@@ -44,20 +50,28 @@ public class Conta implements Serializable {
 		this.nome = nome;
 	}
 
-	public Integer getCpf() {
+	public String getCpf() {
 		return cpf;
 	}
 
-	public void setCpf(Integer cpf) {
+	public void setCpf(String cpf) {
 		this.cpf = cpf;
 	}
 
-	public String getData_nasc() {
+	public Date getData_nasc() {
 		return data_nasc;
 	}
 
-	public void setData_nasc(String data_nasc) {
+	public void setData_nasc(Date data_nasc) {
 		this.data_nasc = data_nasc;
+	}
+
+	public Date getDataCadastro() {
+		return data_cadastro;
+	}
+
+	public void setDataCadastro(Date dataCadastro) {
+		this.data_cadastro = dataCadastro;
 	}
 
 }

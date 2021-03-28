@@ -31,9 +31,7 @@ public class Conta implements Serializable {
 
 	@Column(name = "data_cadastro")
 	private Date data_cadastro;
-	
-	
-	
+
 	public long getId() {
 		return id;
 	}

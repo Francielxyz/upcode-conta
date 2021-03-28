@@ -21,7 +21,7 @@ public class ContaController {
 	ContaRepository contaRepository;
 
 	@GetMapping("/contas")
-	public List<Conta> listaContar() {
+	public List<Conta> listaConta() {
 		return contaRepository.findAll();
 	}
 

@@ -48,8 +48,4 @@ public class Saldo {
 		this.conta = conta;
 	}
 
-//	public double saque(double saque) {
-//		return saldo -= saque;
-//	}
-
 }

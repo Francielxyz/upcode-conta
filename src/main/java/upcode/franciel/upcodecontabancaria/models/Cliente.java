@@ -1,7 +1,9 @@
 package upcode.franciel.upcodecontabancaria.models;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -9,23 +11,18 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.OneToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
 @Table(name = "TB_Conta")
-public class Conta implements Serializable {
+public class Cliente implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private long id_conta;
-	
-	@OneToOne(cascade = CascadeType.ALL)
-	@JoinColumn(name = "id_conta", referencedColumnName = "id_conta", nullable = false)
-	private Saldo saldo;
+	private long id_cliente;
 
 	@Column(name = "nome")
 	private String nome;
@@ -39,12 +36,19 @@ public class Conta implements Serializable {
 	@Column(name = "data_cadastro")
 	private Date data_cadastro;
 
+	@OneToMany(cascade = CascadeType.ALL, orphanRemoval = true, mappedBy = "saldo")
+	private List<Saldo> saldo = new ArrayList<>();
+
+//	@OneToOne(cascade = CascadeType.ALL)
+//	@JoinColumn(name = "fk_id_saldo", referencedColumnName = "id_cliente", nullable = false)
+//	private Saldo saldo;
+
 	public long getId() {
-		return id_conta;
+		return id_cliente;
 	}
 
-	public void setId(long id_conta) {
-		this.id_conta = id_conta;
+	public void setId(long id_cliente) {
+		this.id_cliente = id_cliente;
 	}
 
 	public String getNome() {

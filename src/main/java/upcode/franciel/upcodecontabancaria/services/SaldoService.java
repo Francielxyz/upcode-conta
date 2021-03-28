@@ -14,10 +14,11 @@ public class SaldoService {
 	@Autowired
 	private SaldoRepository repository;
 
-	public String deposito(Long id, Double valor) {
+	public String deposito(long id, double valor) {
 
 		try {
-			Saldo saldoInicial = repository.findById(id).orElseThrow(() -> new Exception());
+//			Saldo saldoInicial = repository.findById(id).orElseThrow(() -> new Exception());
+			Saldo saldoInicial = repository.findById(id);
 
 			if (saldoInicial == null) {
 
@@ -42,9 +43,9 @@ public class SaldoService {
 
 	}
 
-	public String saque(Long id, Double valor) {
+	public String saque(long id, double valor) {
 		try {
-			Saldo saldoInicial = repository.findById(id).orElseThrow(() -> new Exception());
+			Saldo saldoInicial = repository.findById(id);
 
 			if (saldoInicial == null) {
 				return "Saldo insuficiente para realziar saque";

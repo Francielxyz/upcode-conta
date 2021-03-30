@@ -3,11 +3,11 @@ package upcode.franciel.upcodecontabancaria.repository;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 
-import upcode.franciel.upcodecontabancaria.models.Saldo;
+import upcode.franciel.upcodecontabancaria.models.Movimentacoes;
 
-public interface SaldoRepository extends JpaRepository<Saldo, Long> {
+public interface MovimentacoesRepository extends JpaRepository<Movimentacoes, Long> {
 	
-	Saldo findById (long id_saldo);
+	Movimentacoes findById (long id_saldo);
 	
 //	@Query("SELECT s.saldo FROM TB_Saldo s WHERE s.id = ?1")
 //	Saldo consultarSaldo(long contaId);

@@ -1,31 +1,43 @@
 package upcode.franciel.upcodecontabancaria.services;
 
+import java.util.Optional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 
-import upcode.franciel.upcodecontabancaria.models.Saldo;
-import upcode.franciel.upcodecontabancaria.repository.SaldoRepository;
+import upcode.franciel.upcodecontabancaria.models.Movimentacoes;
+import upcode.franciel.upcodecontabancaria.repository.MovimentacoesRepository;
 
 @Service
 @Qualifier("SaldoService")
-public class SaldoService {
+public class MovimentacoesService {
 
 	@Autowired
-	private SaldoRepository repository;
+	private MovimentacoesRepository repository;
 
-	public String deposito(long id, double valor) {
+	public Movimentacoes buscaId(Long id_movimentacao) {
+		Optional<Movimentacoes> obj = repository.findById(id_movimentacao);
+
+		if (obj.orElse(null) == null) {
+			throw new RuntimeException("Conta não Encontrada");
+		}
+
+		return obj.orElse(null);
+	}
+
+	public String deposito(long id_movimentacao, double valor) {
 
 		try {
-//			Saldo saldoInicial = repository.findById(id).orElseThrow(() -> new Exception());
-			Saldo saldoInicial = repository.findById(id);
+//			Movimentacoes saldoInicial = repository.findById(id).orElseThrow(() -> new Exception());
+			Movimentacoes saldoInicial = repository.findById(id_movimentacao);
 
 			if (saldoInicial == null) {
 
-				Saldo saldo = new Saldo();
-				saldo.setId(id);
-				saldo.setSaldo(valor);
-				repository.save(saldo);
+				Movimentacoes movimentacoes = new Movimentacoes();
+				movimentacoes.setId(id_movimentacao);
+				movimentacoes.setSaldo(valor);
+				repository.save(movimentacoes);
 
 			} else {
 
@@ -43,17 +55,16 @@ public class SaldoService {
 
 	}
 
-	public String saque(long id, double valor) {
+	public String saque(long id_movimentacao, double valor) {
 		try {
-			Saldo saldoInicial = repository.findById(id);
+			Movimentacoes saldoInicial = repository.findById(id_movimentacao);
 
 			if (saldoInicial == null) {
 				return "Saldo insuficiente para realziar saque";
 			}
 			if (saldoInicial.getSaldo() < valor) {
 				return "Valor para saque insuficiente";
-			}
-			else {
+			} else {
 				saldoInicial.setSaldo(saldoInicial.getSaldo() - valor);
 				repository.save(saldoInicial);
 				return "Saque realizado com sucesso";

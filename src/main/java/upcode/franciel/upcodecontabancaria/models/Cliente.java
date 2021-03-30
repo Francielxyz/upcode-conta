@@ -15,7 +15,7 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "TB_Conta")
+@Table(name = "TB_cliente")
 public class Cliente implements Serializable {
 
 	private static final long serialVersionUID = 1L;
@@ -37,11 +37,22 @@ public class Cliente implements Serializable {
 	private Date data_cadastro;
 
 	@OneToMany(cascade = CascadeType.ALL, orphanRemoval = true, mappedBy = "saldo")
-	private List<Saldo> saldo = new ArrayList<>();
+	private List<Movimentacoes> movimentacoes = new ArrayList<>();
 
-//	@OneToOne(cascade = CascadeType.ALL)
-//	@JoinColumn(name = "fk_id_saldo", referencedColumnName = "id_cliente", nullable = false)
-//	private Saldo saldo;
+	public Cliente() {
+
+	}
+
+	public Cliente(long id_cliente, String nome, String cpf, Date data_nasc, Date data_cadastro,
+			List<Movimentacoes> movimentacoes) {
+		super();
+		this.id_cliente = id_cliente;
+		this.nome = nome;
+		this.cpf = cpf;
+		this.data_nasc = data_nasc;
+		this.data_cadastro = data_cadastro;
+		this.movimentacoes = movimentacoes;
+	}
 
 	public long getId() {
 		return id_cliente;

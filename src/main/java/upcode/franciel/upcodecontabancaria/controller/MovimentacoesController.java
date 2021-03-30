@@ -10,29 +10,29 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import upcode.franciel.upcodecontabancaria.models.Saldo;
-import upcode.franciel.upcodecontabancaria.repository.SaldoRepository;
+import upcode.franciel.upcodecontabancaria.models.Movimentacoes;
+import upcode.franciel.upcodecontabancaria.repository.MovimentacoesRepository;
 
 @RestController
 @RequestMapping(value = "/api")
-public class SaldoController {
+public class MovimentacoesController {
 
 	@Autowired
-	SaldoRepository saldoRepository;
+	MovimentacoesRepository movimentacoesRepository;
 
-	@GetMapping("/saldo")
-	public List<Saldo> listaSaldo() {
-		return saldoRepository.findAll();
+	@GetMapping("/movimentacao")
+	public List<Movimentacoes> listaSaldo() {
+		return movimentacoesRepository.findAll();
 	}
 
-	@GetMapping("/saldo/{id_saldo}")
-	public Saldo consultarSaldo(@PathVariable(value = "id_saldo") long id_saldo) {
-		return saldoRepository.findById(id_saldo);
+	@GetMapping("/movimentacao/{id_movimentacao}")
+	public Movimentacoes consultarSaldo(@PathVariable(value = "id_movimentacao") long id_saldo) {
+		return movimentacoesRepository.findById(id_saldo);
 	}
 
 	@PostMapping("/saldo")
-	public Saldo salvarSaldo(@RequestBody Saldo saldo_saldo) {
-		return saldoRepository.save(saldo_saldo);
+	public Movimentacoes salvarSaldo(@RequestBody Movimentacoes saldo_saldo) {
+		return movimentacoesRepository.save(saldo_saldo);
 	}
 	
 //	@PutMapping("/saldo/saque")

@@ -23,7 +23,7 @@ public class Conta implements Serializable {
 	@Id
 	private Integer id;
 	@Column(unique = true, nullable = false)
-	private String agencia;
+	private String num_conta;
 	@Column(nullable = false)
 	private double saldo;
 
@@ -40,10 +40,10 @@ public class Conta implements Serializable {
 
 	}
 
-	public Conta(Integer id, String agencia, double saldo, Cliente cliente) {
+	public Conta(Integer id, String num_conta, double saldo, Cliente cliente) {
 		super();
 		this.id = id;
-		this.agencia = agencia;
+		this.num_conta = num_conta;
 		this.saldo = saldo;
 		this.cliente = cliente;
 	}
@@ -56,12 +56,12 @@ public class Conta implements Serializable {
 		this.id = id;
 	}
 
-	public String getAgencia() {
-		return agencia;
+	public String getNum_conta() {
+		return num_conta;
 	}
 
-	public void setAgencia(String agencia) {
-		this.agencia = agencia;
+	public void setNum_conta(String num_conta) {
+		this.num_conta = num_conta;
 	}
 
 	public double getSaldo() {
@@ -94,31 +94,6 @@ public class Conta implements Serializable {
 
 	public void setTransacoess(List<Transacao> transacoes) {
 		this.transacoes = transacoes;
-	}
-
-	@Override
-	public int hashCode() {
-		final int prime = 31;
-		int result = 1;
-		result = prime * result + ((agencia == null) ? 0 : agencia.hashCode());
-		return result;
-	}
-
-	@Override
-	public boolean equals(Object obj) {
-		if (this == obj)
-			return true;
-		if (obj == null)
-			return false;
-		if (getClass() != obj.getClass())
-			return false;
-		Conta other = (Conta) obj;
-		if (agencia == null) {
-			if (other.agencia != null)
-				return false;
-		} else if (!agencia.equals(other.agencia))
-			return false;
-		return true;
 	}
 
 }

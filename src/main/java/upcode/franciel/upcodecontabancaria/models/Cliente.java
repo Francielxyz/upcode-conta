@@ -26,7 +26,7 @@ public class Cliente implements Serializable {
 
 	private String nome;
 	private Date data_nasc;
-	private Date data_cadastro;
+	private Date data_cadastro = new Date();
 	@OneToOne(cascade = CascadeType.ALL, mappedBy = "cliente")
 	private Conta conta;
 
